@@ -3,9 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
 class Chat extends StatefulWidget {
-  Chat({Key key, this.title}) : super(key: key);
-
-  final String title;
+//  Chat({Key key, this.title}) : super(key: key);
+//
+//  final String title;
 
   @override
   _ChatState createState() => _ChatState();
@@ -26,7 +26,7 @@ class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Baby Name Votes')),
+      appBar: AppBar(title: Text('Flutter-Chat')),
       body: _buildBody(context),
     );
   }

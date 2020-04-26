@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter-Chat',
       theme: ThemeData(
         primarySwatch: Colors.lightGreen
@@ -28,7 +29,7 @@ class _MyHomePageState extends State {
 
   int _currentPageIndex = 0;
 
-  var pages = [];
+  var pages = [Chat(), MyPage(),];
 
   @override
   void initState() {
@@ -44,6 +45,35 @@ class _MyHomePageState extends State {
 
 
 
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+      body: pages[_currentPageIndex],
 
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentPageIndex,
+        onTap: (index) {
+          setState(() {
+            _currentPageIndex = index;
+          });
+        },
+
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat),
+            activeIcon: Icon(Icons.chat),
+            title: Text("")
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline,),
+            activeIcon: Icon(Icons.person),
+            title: Text("")
+
+          )
+        ],
+      ),
+    );
+  }
 
 }
