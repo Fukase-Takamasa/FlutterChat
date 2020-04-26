@@ -27,27 +27,26 @@ class _ChatState extends State<Chat> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: Icon(Icons.photo_camera, size: 26,),
+              onPressed: () {
+                //
+              },
+            );
+          },
+        ),
         centerTitle: true,
         elevation: 0.0,
-        title: Text(
-          'Flutter-Chat',
-          style: TextStyle(
-            fontSize: 22,
-            color: Colors.black,
-            fontFamily: "Montserrat",
-          ),
+        title: Text('Flutter-Chat',
+              style: TextStyle(
+              fontSize: 22,
+              color: Colors.black,
+              fontFamily: "Montserrat",
+              ),
+            ),
         ),
-        actions: <Widget>[
-          IconButton(
-            iconSize: 26,
-            icon: Icon(Icons.photo_camera),
-            color: Colors.black,
-            onPressed: (){
-              //
-            },
-          ),
-        ],
-      ),
       body: _buildBody(context),
     );
   }
