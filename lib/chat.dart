@@ -26,7 +26,28 @@ class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Flutter-Chat')),
+      appBar: AppBar(
+        centerTitle: true,
+        elevation: 0.0,
+        title: Text(
+          'Flutter-Chat',
+          style: TextStyle(
+            fontSize: 22,
+            color: Colors.black,
+            fontFamily: "Montserrat",
+          ),
+        ),
+        actions: <Widget>[
+          IconButton(
+            iconSize: 26,
+            icon: Icon(Icons.photo_camera),
+            color: Colors.black,
+            onPressed: (){
+              //
+            },
+          ),
+        ],
+      ),
       body: _buildBody(context),
     );
   }
