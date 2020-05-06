@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
@@ -119,14 +121,14 @@ class _ChatState extends State<Chat> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(25),
               child: Container(
-                color: Colors.blueGrey,
                 width: 50, height: 50,
-//          decoration: BoxDecoration(
-//            shape: BoxShape.circle,
-//            image: DecorationImage(
-//              fit: BoxFit.fill,
-//            )
-//          ),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage("images/inabaIcon.jpg")
+                  )
+                ),
               ),
             ),
           ),
@@ -141,7 +143,7 @@ class _ChatState extends State<Chat> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Container(
-                  color: Colors.lightGreenAccent,
+                  color: Colors.white,
                   child: Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(text,
