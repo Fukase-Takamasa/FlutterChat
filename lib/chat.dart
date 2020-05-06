@@ -61,6 +61,8 @@ class _ChatState extends State<Chat> {
     _textController.text = "";
   }
 
+
+
   Widget _buildBody(context) {
     return StreamBuilder(
       stream: Firestore.instance.collection("chat").snapshots(),
@@ -68,46 +70,83 @@ class _ChatState extends State<Chat> {
         if (!snapshot.hasData) {
           return LinearProgressIndicator();
         }
-        return Container(
-          padding: EdgeInsets.all(20),
-          child: Column(
+        return Column(
             children: <Widget>[
+              Container(
+                height: 15,
+              ),
               Expanded(
                 child: ListView(
                   children: snapshot.data.documents.map<Widget>((DocumentSnapshot document) {
-                    return Container(
-                      child: Card(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                        child: Container(
-                          color: Colors.lightGreenAccent,
-                          child: ((){
-                            return Text(document["message"]) != null ? Text(document["message"]) : Text("Loading...");
-                          }()),
-                        ),
-                      ),
-                    );
+                    var text = (document["message"] != null) ? document["message"] : Text("Loading...");
+                    return _messageItem(text);
                   }).toList(),
                 ),
               ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: TextField(
-                      controller: _textController,
+              Padding(
+                padding: EdgeInsets.only(left: 15, right: 15, bottom: 15),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: TextField(
+                        controller: _textController,
+                      ),
                     ),
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.send),
-                    onPressed: () {
-                    _addMessage();
-                    },
-                  )
-                ],
+                    IconButton(
+                      icon: Icon(Icons.send),
+                      onPressed: () {
+                        _addMessage();
+                      },
+                    )
+                  ],
+                ),
               ),
             ],
-          ),
         );
       },
     );
   }
+
+  Widget _messageItem(String text) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.only(left: 8, right: 8),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: Container(
+                color: Colors.blueGrey,
+                width: 50, height: 50,
+//          decoration: BoxDecoration(
+//            shape: BoxShape.circle,
+//            image: DecorationImage(
+//              fit: BoxFit.fill,
+//            )
+//          ),
+              ),
+            ),
+          ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Container(
+              color: Colors.lightGreenAccent,
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Text(text,
+                  style: TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.normal,
+                      color: Colors.black),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
 }
