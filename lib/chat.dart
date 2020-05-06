@@ -72,7 +72,7 @@ class _ChatState extends State<Chat> {
         }
         return Column(
             children: <Widget>[
-              Container(
+              Container( //スペーサー
                 height: 15,
               ),
               Expanded(
@@ -109,10 +109,10 @@ class _ChatState extends State<Chat> {
 
   Widget _messageItem(String text) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 10),
+      padding: EdgeInsets.only(bottom: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(left: 8, right: 8),
@@ -130,19 +130,29 @@ class _ChatState extends State<Chat> {
               ),
             ),
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Container(
-              color: Colors.lightGreenAccent,
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(text,
-                  style: TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.normal,
-                      color: Colors.black),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text("稲葉っち",
+                style: TextStyle(
+                  fontSize: 12
                 ),
               ),
-            ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  color: Colors.lightGreenAccent,
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(text,
+                      style: TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.normal,
+                          color: Colors.black),
+                    ),
+                  ),
+                ),
+              )
+            ],
           )
         ],
       ),
